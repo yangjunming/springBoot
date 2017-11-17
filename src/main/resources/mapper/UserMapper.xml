@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.mapper.UserMapper">
+		<resultMap id="EmployeeMap" type="cn.com.Bean.User">
+				<result property="userId" column="user_id" />
+				<result property="username" column="username" />
+				<result property="loginUserid" column="login_userid" />
+				<result property="fullname" column="fullname" />
+				<result property="deptId" column="dept_id" />
+				<result property="deptName" column="dept_name" />
+				<result property="mobile" column="mobile" />
+				<result property="email" column="email" />
+				<result property="areaName" column="area_name" />
+				<result property="compFullName" column="comp_full_name" />
+				<result property="logisId" column="logis_id" />
+				<result property="areaId" column="area_id" />
+				<result property="roleId" column="role_id" />
+				<result property="userIcon" column="user_icon" />
+				<result property="roleName" column="role_name" />
+				<result property="userType" column="user_type" />
+				<result property="lastModifyDate" column="last_modify_date" />
+				<result property="userStatus" column="user_status" />
+				<result property="logisCode" column="logis_code" />
+				<result property="identityCard" column="identity_card" />
+				<result property="canSeeOtherOrder" column="can_see_other_order" />
+				<result property="loginChannel" column="login_channel" />
+				<result property="hasCreateSecondaryFunction" column="has_create_secondary_function" />
+		</resultMap>
+		<select id="getByUserid" resultMap="EmployeeMap">
+				SELECT
+				*
+				FROM
+				main_employee
+				<where>
+						<if test="userId != 0 ">
+								user_id = ${userId}
+						</if>
+				</where>
+		</select>
+</mapper>
