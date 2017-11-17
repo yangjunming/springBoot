@@ -3,11 +3,11 @@ package cn.com;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 
@@ -20,7 +20,7 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
  * @version 创建时间：2017年3月14日 上午11:33:45 类说明
  */
 @SpringBootApplication
-//@MapperScan("cn.com.dao")
+@PropertySource("classpath:redis.properties")
 public class App {
 
 	/**

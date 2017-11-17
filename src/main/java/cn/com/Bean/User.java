@@ -1,5 +1,6 @@
 package cn.com.Bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * @author :
  * @version 创建时间：2017年11月15日 下午3:33:48 类说明
  */
-public class User {
+public class User implements Serializable {
 
 	// 主键
 	private int userId;
