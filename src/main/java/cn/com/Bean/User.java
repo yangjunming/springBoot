@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class User implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	// 主键
 	private int userId;
 	// 用户名(登录名)

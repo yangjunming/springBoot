@@ -50,7 +50,7 @@ public class App {
 	/**
 	 * spring loader的配置
 	 * -javaagent:E:\安装工具\spring-boot\springloaded\springloaded-1.2.4.RELEASE.
-	 * jar -noverify
+	 * jar -noverifyR
 	 * 
 	 * @param args
 	 */

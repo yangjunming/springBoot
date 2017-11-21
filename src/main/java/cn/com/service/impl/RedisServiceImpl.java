@@ -1,5 +1,9 @@
 package cn.com.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,8 @@ public class RedisServiceImpl implements RedisService {
 	private HashOperations<String, String, User> hashOperations;
 	@Autowired
 	private UserService userService;
+
+	private static final String USER_LOCK = "user_lock:";
 
 	@Override
 	public String getStr(String key) {
@@ -78,14 +84,38 @@ public class RedisServiceImpl implements RedisService {
 		// ListOperations<K, V>
 		// ZSetOperations<K, V>
 		// SetOperations<K, V>
+		// boolean f = getLock(userId);
+		// if(f){
 		User user = (User) hashOperations.get("USER:" + userId, String.valueOf(userId));
 		if (null == user) {
 			user = userService.getByUserid(userId);
 			if (null != user) {
-				hashOperations.put("USER:" + user.getUserId(), String.valueOf(user.getUserId()), user);
+				// hashOperations.put("USER:" + user.getUserId(),
+				// String.valueOf(user.getUserId()), user);
+				Map<String, User> map = new HashMap<String, User>();
+				map.put(String.valueOf(user.getUserId()), user);
+				hashOperations.putAll("USER:" + user.getUserId(), map);
 			}
 		}
 		return user;
+		// }
+		// return new User();
+	}
+
+	/**
+	 * 加锁
+	 * 
+	 * @return
+	 */
+	@Deprecated
+	private boolean getLock(int userId) {
+		ValueOperations<String, String> valueOps = redisTemplateString.opsForValue();
+		boolean f = valueOps.setIfAbsent(USER_LOCK + userId, "locked");
+		if (f) {
+			redisTemplateString.expire(USER_LOCK + userId, 10, TimeUnit.SECONDS);
+			return f;
+		}
+		return false;
 	}
 
 }

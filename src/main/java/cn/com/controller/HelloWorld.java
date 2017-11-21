@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.com.Bean.Demo;
 import cn.com.Bean.User;
-import cn.com.mapper.UserMapper;
 import cn.com.service.RedisService;
 import cn.com.service.UserService;
 
