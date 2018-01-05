@@ -47,7 +47,7 @@ public class IpFilter implements HandlerInterceptor {
 		// out = response.getWriter();
 		// out.append(JSONObject.toJSONString(responseResult));
 		// out.close();
-		boolean ipCheck = false;
+		boolean ipCheck = true;
 		if (!ipCheck) {
 			this.excuteIPFilter(request, response, ResultConst.SYSTEM_ERROR_CODE, "哈哈哈哈哈");
 			return false;

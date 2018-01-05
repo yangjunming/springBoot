@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.mapper.GenerateDataMapper">
+		<resultMap type="cn.com.Bean.MainSupplier" id="SupplierBeanMap">
+				<id column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+				<result column="tax_sign_no" jdbcType="VARCHAR" property="taxSignNo" />
+				<result column="buss_sign_no" jdbcType="VARCHAR" property="bussSignNo" />
+				<result column="supplier_code" jdbcType="VARCHAR" property="supplierCode" />
+				<result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+				<result column="linkname" jdbcType="VARCHAR" property="linkname" />
+				<result column="link_phone" jdbcType="VARCHAR" property="linkPhone" />
+				<result column="link_mobile" jdbcType="VARCHAR" property="linkMobile" />
+				<result column="supplier_status" jdbcType="CHAR" property="supplierStatus" />
+				<result column="finance_type" jdbcType="CHAR" property="financeType" />
+				<result column="period" jdbcType="INTEGER" property="period" />
+				<result column="link_email" jdbcType="VARCHAR" property="linkEmail" />
+				<result column="regis_area_id" jdbcType="INTEGER" property="regisAreaId" />
+				<result column="regis_address" jdbcType="VARCHAR" property="regisAddress" />
+				<result column="comp_fax" jdbcType="VARCHAR" property="compFax" />
+				<result column="comm_area_id" jdbcType="INTEGER" property="commAreaId" />
+				<result column="comp_address" jdbcType="VARCHAR" property="compAddress" />
+				<result column="buss_sign_img" jdbcType="VARCHAR" property="bussSignImg" />
+				<result column="tax_sign_img" jdbcType="VARCHAR" property="taxSignImg" />
+				<result column="wechat_no" jdbcType="VARCHAR" property="wechatNo" />
+				<result column="comp_postcode" jdbcType="VARCHAR" property="compPostcode" />
+				<result column="comp_phone" jdbcType="VARCHAR" property="compPhone" />
+				<result column="comp_site" jdbcType="VARCHAR" property="compSite" />
+				<result column="comp_logo" jdbcType="VARCHAR" property="compLogo" />
+				<result column="purchman_id" jdbcType="INTEGER" property="purchmanId" />
+				<result column="sign_date" jdbcType="TIMESTAMP" property="signDate" />
+				<result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+				<result column="last_modifier" jdbcType="VARCHAR" property="lastModifier" />
+				<result column="supplier_remark" jdbcType="VARCHAR" property="supplierRemark" />
+				<result column="latitude" jdbcType="VARCHAR" property="latitude" />
+				<result column="longitude" jdbcType="VARCHAR" property="longitude" />
+		</resultMap>
+
+		<insert id="insertBatch">
+				INSERT INTO main_supplier(
+				tax_sign_no,
+				buss_sign_no,
+				supplier_code,
+				supplier_name,
+				linkname,
+				link_mobile,
+				link_email,
+				regis_area_id,
+				regis_address,
+				comp_fax,
+				comm_area_id,
+				comp_address
+				)
+				VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+						(#{item.taxSignNo}, #{item.bussSignNo},
+						#{item.supplierCode}
+						, #{item.supplierName}
+						, #{item.linkname}
+						, #{item.linkMobile}
+						, #{item.linkEmail}
+						,
+						#{item.regisAreaId}
+						, #{item.regisAddress}
+						, #{item.compFax}
+						, #{item.commAreaId}
+						, #{item.compAddress}
+						)
+				</foreach>
+		</insert>
+
+		<!-- 添加商品 -->
+		<insert id="insertSku" >
+				insert into main_supplier_sku(
+				sku_code,
+				sku_name,
+				brand_id,
+				sku_brand,
+				sku_unit,
+				barcode,
+				sku_spec,
+				keep_quality,
+				catalog_id,
+				pack_count,
+				min_count,
+				stockoutout_price,
+				supplier_id,
+				tax_rate,
+				gift_reference_price,
+				volume,
+				weight)
+				VALUES
+				<foreach collection="list" item="item" index="index" separator=",">
+						(#{item.skuCode}, #{item.skuName},
+						#{item.brandId}
+						, #{item.skuBrand}
+						, #{item.skuUnit}
+						, #{item.barCode}
+						, #{item.skuSpec}
+						, #{item.keepQuality}
+						, #{item.catalogId}
+						, #{item.packCount}
+						, #{item.minCount}
+						, #{item.stockoutoutPrice}
+						, #{item.supplierId}
+						, #{item.taxRate}
+						, #{item.giftReferencePrice}
+						, #{item.volume}
+						, #{item.weight}
+						)
+				</foreach>
+		</insert>
+
+</mapper>

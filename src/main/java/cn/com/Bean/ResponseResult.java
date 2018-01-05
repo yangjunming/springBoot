@@ -10,6 +10,15 @@ public class ResponseResult {
 
 	private String message;
 
+	public ResponseResult() {
+		super();
+	}
+
+	public ResponseResult(int code, String message) {
+		this.code = code;
+		this.message = message;
+	}
+
 	public int getCode() {
 		return code;
 	}

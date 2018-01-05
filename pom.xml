@@ -87,7 +87,7 @@
 						<artifactId>spring-boot-starter-data-redis</artifactId>
 				</dependency>
 
-<!-- 				log4j依赖，先去掉spring-boot-starter中spring-boot-starter-logging的依赖 -->
+				<!-- log4j依赖，先去掉spring-boot-starter中spring-boot-starter-logging的依赖 -->
 				<dependency>
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-starter</artifactId>
@@ -103,6 +103,11 @@
 						<artifactId>spring-boot-starter-log4j2</artifactId>
 				</dependency>
 
+				<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-amqp</artifactId>
+				</dependency>
+				
 		</dependencies>
 
 		<!-- 构建节点. -->
